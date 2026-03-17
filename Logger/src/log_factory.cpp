@@ -29,7 +29,7 @@ void LogFactory::init(const std::string& confile) {
 		log_level = config.get("log_level");
 	}
 
-	m_logger.setFormater(new XLogFormat());
+	m_logger.setFormater(make_unique<XLogFormat>());
 
 	log_level = ToLowerCopy(log_level);
 	log_type = ToLowerCopy(log_type);
@@ -51,17 +51,16 @@ void LogFactory::init(const std::string& confile) {
 		if (log_file.empty()) {
 			log_file = LOGFILE;
 		}
-		auto fout = new LogFileOutput();
+		auto fout = make_unique<LogFileOutput>();
 		if (!fout->open(log_file)) {
 			cerr << "open file failed " << log_file << endl;
-			delete fout;
-			m_logger.setOutput(new LogConsoleOutput);
+			m_logger.setOutput(make_unique<LogConsoleOutput>());
 			return;
 		}
-		m_logger.setOutput(fout);
+		m_logger.setOutput(std::move(fout));
 	}
 	else {
-		m_logger.setOutput(new LogConsoleOutput);
+		m_logger.setOutput(make_unique<LogConsoleOutput>());
 	}
 }
 
