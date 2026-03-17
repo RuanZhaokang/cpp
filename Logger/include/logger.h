@@ -4,7 +4,7 @@
 #include "log_format.h"
 #include "log_output.h"
 
-// 锟斤拷志锟斤拷锟斤拷
+// 日志级别
 enum class LogLevel {
 	DEBUG,
 	INFO,
@@ -12,15 +12,19 @@ enum class LogLevel {
 	FATAL
 };
 
-// Logger aggregates a formatter and an output sink.
+//////////////////
+/// 聚合类
+/// 委托 LogFormat
+///      LogOutput
+//////////////////
 class Logger {
 public:
 	/////////////////////////
-	/// 锟斤拷式锟斤拷写锟斤拷锟斤拷志
-	/// @para level 锟斤拷志锟斤拷锟斤拷
-	/// @para log 锟斤拷志锟斤拷锟斤拷
-	///	@para file 源锟侥硷拷路锟斤拷
-	/// @para line 锟斤拷锟斤拷锟叫猴拷
+	/// 格式化写入日志
+	/// @para level 日志级别
+	/// @para log 日志内容
+	///	@para file 源文件路径
+	/// @para line 代码行号
 	/////////////////////////
 	void write(LogLevel level, const std::string& log, const std::string& file, int line);
 
@@ -33,7 +37,7 @@ private:
 	std::unique_ptr<LogFormat> m_formater;
 	std::unique_ptr<LogOutput> m_output;
 
-	// 锟斤拷锟斤拷锟街撅拷锟斤拷锟侥拷锟紻EBUG
+	// 最低默认级别，默认DEBUG
 	LogLevel m_lowestLevel{ LogLevel::DEBUG };
 };
 
