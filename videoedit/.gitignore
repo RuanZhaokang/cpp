@@ -1,0 +1,49 @@
+# Visual Studio / MSBuild
+.vs/
+**/.vs/
+.vscode/
+**/.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output / intermediates
+**/Debug/
+**/Release/
+**/x64/
+**/Win32/
+**/ipch/
+*.obj
+*.pdb
+*.idb
+*.ilk
+*.tlog
+*.log
+*.lastbuildstate
+*.aps
+*.res
+*.iobj
+*.ipdb
+
+# Produced binaries/libraries (repo currently uses these as build output folders)
+bin/**
+lib/**
+
+# Keep config file if you still want it tracked
+!bin/log.conf
+
+# Media / large files (keep repo small)
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.wav
+*.flac
+
+# Third-party executables (recommend download separately)
+*.exe
+*.dll
+*.lib
+*.exp
+
